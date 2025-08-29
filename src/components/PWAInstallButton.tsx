@@ -71,62 +71,36 @@ const PWAInstallButton = () => {
   return (
     <>
       <Button
-        variant="contained"
-        startIcon={<Download sx={{ fontSize: 28 }} />}
+        variant="outlined"
+        startIcon={<Download sx={{ fontSize: 20 }} />}
         onClick={handleInstallClick}
         sx={{
           position: 'fixed',
-          bottom: 30,
-          right: 30,
+          bottom: 20,
+          right: 20,
           zIndex: 1000,
-          fontSize: '1.2rem',
-          fontWeight: 'bold',
-          px: 4,
-          py: 2,
-          borderRadius: 3,
-          background: 'linear-gradient(135deg, #0f4c75 0%, #3282b8 100%)',
-          color: 'white',
-          boxShadow: '0 8px 25px rgba(15, 76, 117, 0.4)',
-          animation: 'pulse 2s infinite',
+          fontSize: '0.9rem',
+          fontWeight: 'medium',
+          px: 2.5,
+          py: 1,
+          borderRadius: 2,
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(15, 76, 117, 0.3)',
+          color: '#0f4c75',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
           '&:hover': {
-            background: 'linear-gradient(135deg, #0a3d5f 0%, #2968a3 100%)',
-            transform: 'translateY(-4px) scale(1.05)',
-            boxShadow: '0 12px 35px rgba(15, 76, 117, 0.6)',
+            background: 'rgba(15, 76, 117, 0.1)',
+            transform: 'translateY(-2px)',
+            boxShadow: '0 6px 20px rgba(15, 76, 117, 0.2)',
           },
           '&:active': {
-            transform: 'translateY(-2px) scale(1.02)',
+            transform: 'translateY(0)',
           },
-          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          '@keyframes pulse': {
-            '0%': {
-              boxShadow: '0 8px 25px rgba(15, 76, 117, 0.4)',
-            },
-            '50%': {
-              boxShadow: '0 8px 25px rgba(15, 76, 117, 0.8)',
-            },
-            '100%': {
-              boxShadow: '0 8px 25px rgba(15, 76, 117, 0.4)',
-            },
-          },
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: -2,
-            left: -2,
-            right: -2,
-            bottom: -2,
-            background: 'linear-gradient(135deg, #3282b8, #0f4c75, #bbe1fa)',
-            borderRadius: 'inherit',
-            zIndex: -1,
-            opacity: 0,
-            transition: 'opacity 0.3s ease',
-          },
-          '&:hover::before': {
-            opacity: 1,
-          },
+          transition: 'all 0.3s ease',
         }}
       >
-        📱 Install App
+        Install App
       </Button>
 
       <Snackbar
