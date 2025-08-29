@@ -11,7 +11,7 @@
       "destination": "/demo.html"
     },
     {
-      "source": "/((?!api|_next|_static|test\\.html|demo\\.html|.*\\.).*))",
+      "source": "/((?!api|_next|_static|test\\.html|demo\\.html|.*\\.).*)",
       "destination": "/index.html"
     }
   ],
