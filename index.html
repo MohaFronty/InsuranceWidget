@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Insurance Widget" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Insurance Widget" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- PWA Icons -->
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+    
+    <!-- Iframe-friendly meta tags -->
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta http-equiv="X-Frame-Options" content="ALLOWALL" />
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors *;" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Insurance Onboarding Widget</title>
+    
+    <style>
+      .demo-nav {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .demo-nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.2s ease;
+        font-size: 18px;
+        border: 2px solid rgba(255,255,255,0.2);
+      }
+      
+      .demo-nav a:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      }
+      
+      .nav-widget { background: #20585C; color: white; }
+      .nav-demo { background: #F4A63A; color: white; }
+      .nav-test { background: #327233; color: white; }
+      
+      @media (max-width: 768px) {
+        .demo-nav {
+          top: 10px;
+          right: 10px;
+        }
+        .demo-nav a {
+          width: 42px;
+          height: 42px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; overflow-x: hidden;">
+    <!-- Demo Navigation - Only show when not in iframe -->
+    <div class="demo-nav" id="demo-nav">
+      <a href="/" class="nav-widget" title="Main Widget">🏠</a>
+      <a href="/demo.html" class="nav-demo" title="Integration Demo">📋</a>
+      <a href="/test.html" class="nav-test" title="Quick Test">🧪</a>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      // Register service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+              
+              // Update available
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed') {
+                    if (navigator.serviceWorker.controller) {
+                      // New update available
+                      console.log('New content is available; please refresh.');
+                    } else {
+                      // Content is cached for offline use
+                      console.log('Content is cached for offline use.');
+                    }
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+
+      // PWA Install prompt
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        
+        // Show install button (you can customize this)
+        console.log('PWA install prompt available');
+        
+        // Optionally show a custom install button
+        showInstallButton();
+      });
+
+      function showInstallButton() {
+        // You can add a custom install button to your UI here
+        console.log('PWA can be installed');
+      }
+
+      // Hide navigation if this is embedded in an iframe or demo page
+      if (window.self !== window.top || window.location.pathname !== '/') {
+        const nav = document.getElementById('demo-nav');
+        if (nav) nav.style.display = 'none';
+      }
+    </script>
+  </body>
+</html>
