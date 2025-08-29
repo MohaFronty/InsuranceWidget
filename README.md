@@ -34,7 +34,7 @@ A professional, embeddable insurance application widget built with React, TypeSc
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, TypeScript, Material UI
+- **Frontend**: React js, TypeScript, Material UI
 - **State Management**: Redux Toolkit
 - **Build Tool**: Vite
 - **Styling**: CSS-in-JS with Material UI theming
