@@ -17,7 +17,6 @@ A professional, embeddable insurance application widget built with React, TypeSc
 - **Form validation** with real-time error handling
 - **Responsive design** that works on all devices
 - **PWA support** with offline functionality
-- **Confetti celebrations** for completed applications
 
 ### 🔧 **Technical Features**
 - **Iframe-friendly** with secure cross-origin messaging
@@ -222,7 +221,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Documentation**: [Project Wiki](https://github.com/RaymanMoha/InsuranceWidget/wiki)
 - **Issues**: [GitHub Issues](https://github.com/RaymanMoha/InsuranceWidget/issues)
-- **Email**: support@insurancewidget.com
 - **Demo**: [Live Demo](https://insurance-widget.vercel.app/)
 
 ## 🚗 Roadmap
@@ -238,7 +236,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] A/B testing framework
 - [ ] Machine learning form optimization
 - [ ] Voice input support
-- [ ] Advanced reporting features
 
 ---
 
