@@ -1,30 +1,18 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/test.html",
-      "dest": "/test.html"
+      "source": "/test",
+      "destination": "/test.html"
     },
     {
-      "src": "/demo.html", 
-      "dest": "/demo.html"
+      "source": "/demo",
+      "destination": "/demo.html"
     },
     {
-      "src": "/test",
-      "dest": "/test.html"
-    },
-    {
-      "src": "/demo",
-      "dest": "/demo.html"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot|webp))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!api|_next|_static|test\\.html|demo\\.html|.*\\.).*))",
+      "destination": "/index.html"
     }
   ],
   "headers": [

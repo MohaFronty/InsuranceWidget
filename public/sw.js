@@ -2,24 +2,27 @@
 const CACHE_NAME = 'insurance-widget-v1';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
   '/icon-192x192.png',
   '/icon-512x512.png'
 ];
 
-// Install event - cache resources
+// Install event - cache essential resources only
 self.addEventListener('install', (event) => {
   console.log('Service Worker installing...');
+  // Skip waiting to activate immediately
+  self.skipWaiting();
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
+        // Only cache essential files for faster install
         return cache.addAll(urlsToCache);
       })
       .catch((error) => {
         console.log('Cache failed:', error);
+        // Don't fail install if caching fails
       })
   );
 });

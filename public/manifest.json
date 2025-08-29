@@ -26,16 +26,11 @@
   ],
   "screenshots": [
     {
-      "src": "/screenshot-wide.png",
+      "src": "/screenshot.png",
       "sizes": "1280x720",
       "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshot-narrow.png",
-      "sizes": "640x1136",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "wide",
+      "label": "Insurance application interface"
     }
   ],
   "shortcuts": [
