@@ -269,6 +269,30 @@ window.addEventListener('message', function(event) {
             }
         });
         
+        // Prevent new windows for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Override any potential window.open calls
+            const originalOpen = window.open;
+            window.open = function(url, target, features) {
+                // If it's a navigation link, use same window
+                if (url === '/' || url === '/demo.html' || url === '/test.html' || url === '/demo' || url === '/test') {
+                    window.location.href = url;
+                    return null;
+                }
+                // For other cases, use original behavior
+                return originalOpen.call(this, url, target, features);
+            };
+            
+            // Ensure all navigation links stay in same window
+            document.querySelectorAll('a[href="/"], a[href="/demo.html"], a[href="/test.html"], a[href="/demo"], a[href="/test"]').forEach(link => {
+                link.removeAttribute('target');
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = this.href;
+                });
+            });
+        });
+        
         // Send config to widget when it loads
         document.getElementById('insurance-widget').addEventListener('load', function() {
             this.contentWindow.postMessage({

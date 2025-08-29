@@ -1,37 +1,16 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/test",
-      "destination": "/test.html"
-    },
-    {
-      "source": "/demo",
-      "destination": "/demo.html"
-    },
-    {
-      "source": "/((?!api|_next|_static|test\\.html|demo\\.html|.*\\.).*)",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    }
+  "routes": [
+    { "src": "/test.html", "dest": "/test.html" },
+    { "src": "/demo.html", "dest": "/demo.html" },
+    { "src": "/test", "dest": "/test.html" },
+    { "src": "/demo", "dest": "/demo.html" },
+    { "src": "/manifest.json", "dest": "/manifest.json" },
+    { "src": "/sw.js", "dest": "/sw.js" },
+    { "src": "/icon-(.*).png", "dest": "/icon-$1.png" },
+    { "src": "/screenshot.png", "dest": "/screenshot.png" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
