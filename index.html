@@ -89,59 +89,16 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- PWA Service Worker Registration -->
     <script>
-      // Register service worker for PWA functionality
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('SW registered: ', registration);
-              
-              // Update available
-              registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === 'installed') {
-                    if (navigator.serviceWorker.controller) {
-                      // New update available
-                      console.log('New content is available; please refresh.');
-                    } else {
-                      // Content is cached for offline use
-                      console.log('Content is cached for offline use.');
-                    }
-                  }
-                });
-              });
-            })
-            .catch((registrationError) => {
-              console.log('SW registration failed: ', registrationError);
-            });
-        });
-      }
-
-      // PWA Install prompt
+      // PWA Install prompt handling
       let deferredPrompt;
       window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
-        e.preventDefault();
-        // Stash the event so it can be triggered later
-        deferredPrompt = e;
-        
-        // Show install button (you can customize this)
         console.log('PWA install prompt available');
-        
-        // Optionally show a custom install button
-        showInstallButton();
+        // The prompt will be handled by the React component
       });
 
-      function showInstallButton() {
-        // You can add a custom install button to your UI here
-        console.log('PWA can be installed');
-      }
-
-      // Hide navigation if this is embedded in an iframe or demo page
-      if (window.self !== window.top || window.location.pathname !== '/') {
+      // Hide navigation if this is embedded in an iframe
+      if (window.self !== window.top) {
         const nav = document.getElementById('demo-nav');
         if (nav) nav.style.display = 'none';
       }
