@@ -13,7 +13,6 @@ A professional, embeddable insurance application widget built with React, TypeSc
 ## ✨ Features
 
 ### 🎯 **Core Functionality**
-- **Multi-step onboarding flow** with smooth animations
 - **Form validation** with real-time error handling
 - **Responsive design** that works on all devices
 - **PWA support** with offline functionality
