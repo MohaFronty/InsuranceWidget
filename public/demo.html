@@ -109,13 +109,13 @@
 <body>
     <!-- Demo Navigation - Outside container -->
     <div class="demo-nav" style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px;">
-        <a href="/" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #20585C; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.3s ease;" title="Main Widget" onmouseover="this.style.transform='translateY(-2px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+        <a href="/" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #20585C; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.2s;" title="Main Widget">
             🏠
         </a>
-        <a href="/demo.html" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #F4A63A; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.3s ease;" title="Integration Demo" onmouseover="this.style.transform='translateY(-2px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+        <a href="/demo.html" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #F4A63A; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.2s;" title="Integration Demo">
             📋
         </a>
-        <a href="/test.html" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #327233; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.3s ease;" title="Quick Test" onmouseover="this.style.transform='translateY(-2px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+        <a href="/test.html" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #327233; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.2s;" title="Quick Test">
             🧪
         </a>
     </div>
@@ -134,7 +134,7 @@
         <!-- Insurance Widget Iframe -->
         <div class="widget-container">
             <iframe 
-                src="https://insurance-widget.vercel.app/" 
+                src="/" 
                 id="insurance-widget"
                 title="Insurance Onboarding Widget">
             </iframe>
@@ -153,7 +153,7 @@
                 <p>Copy the iframe code below and paste it into your WordPress page or post.</p>
                 <div class="code-block">
 &lt;iframe 
-  src="https://insurance-widget.vercel.app/" 
+  src="https://your-widget-domain.com/" 
   width="100%" 
   height="700px"
   frameborder="0"
@@ -267,30 +267,6 @@ window.addEventListener('message', function(event) {
                     eventLog.innerHTML = lines.slice(0, 10).join('<br>');
                 }
             }
-        });
-        
-        // Prevent new windows for navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            // Override any potential window.open calls
-            const originalOpen = window.open;
-            window.open = function(url, target, features) {
-                // If it's a navigation link, use same window
-                if (url === '/' || url === '/demo.html' || url === '/test.html' || url === '/demo' || url === '/test') {
-                    window.location.href = url;
-                    return null;
-                }
-                // For other cases, use original behavior
-                return originalOpen.call(this, url, target, features);
-            };
-            
-            // Ensure all navigation links stay in same window
-            document.querySelectorAll('a[href="/"], a[href="/demo.html"], a[href="/test.html"], a[href="/demo"], a[href="/test"]').forEach(link => {
-                link.removeAttribute('target');
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = this.href;
-                });
-            });
         });
         
         // Send config to widget when it loads

@@ -42,9 +42,9 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin-top: 30px;
+            margin: 20px 0;
         }
-
+        
         .widget-panel {
             border-radius: 12px;
             overflow: hidden;
@@ -57,11 +57,17 @@
             border: none;
             display: block;
         }
-
+        
         .test-panel {
             background: #f8f9fa;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-panel h3 {
+            margin-top: 0;
+            color: #333;
         }        .demo-info {
             background: #e8f4f8;
             padding: 20px;
@@ -177,10 +183,23 @@
         @media (max-width: 768px) {
             .test-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .widget-panel iframe {
                 height: 400px;
+            }
+            
+            .test-panel {
+                padding: 15px;
+            }
+            
+            .test-container {
+                padding: 15px;
+            }
+            
+            body {
+                padding: 10px;
             }
         }
     </style>
@@ -205,6 +224,12 @@
             <p>Quick demonstration of iframe integration capabilities</p>
         </div>
         
+        <div class="demo-info">
+            <h3>🧪 Interactive Testing</h3>
+            <p>This widget allows real-time testing and event monitoring. Use the checklist below to test various features and watch the live events console.</p>
+        </div>
+        
+        <!-- Side-by-side Widget and Test Checklist -->
         <div class="test-grid">
             <div class="widget-panel">
                 <iframe 
@@ -242,14 +267,15 @@
                 <h4>Application Completion <span class="status testing" id="completion-status">⏳ Testing</span></h4>
                 <p>Complete the full application process</p>
             </div>
+            </div>
         </div>
-    </div>
-    
-    <!-- Live Events Console - Full width below the grid -->
-    <div class="events-section">
-        <h3>📡 Live Events Console</h3>
-        <div class="events-log" id="events-log">
-            Waiting for widget events...
+        
+        <!-- Live Events Console -->
+        <div class="demo-info">
+            <h3>📡 Live Events Console</h3>
+            <div class="events-log" id="events-log">
+                Waiting for widget events...
+            </div>
         </div>
     </div>
     
